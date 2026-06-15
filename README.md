@@ -214,6 +214,7 @@ The linear relationship between the peak surface thermal stress and the temperat
 
 ### Derivation & Formula
 Thermal fatigue accumulates over the cell's cycle life. The cumulative thermal stress at cycle $N$ is defined as the running sum of the peak surface tangential stresses:
+
 $$\text{Cumulative Stress}_N = \sum_{n=1}^{N} \sigma_{\theta, surf, n}$$
 
 This cumulative metric serves as a proxy for structural micro-damage and correlates strongly with State of Health (SOH) degradation.
