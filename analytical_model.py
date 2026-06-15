@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 
-# Physical parameters for 18650 cell
+# Physical parameters for 18650 cell. Collected from internet.
 V_ocv = 3.7          # Nominal open-circuit voltage (V)
 R_int = 0.07         # Internal resistance (Ohm)
 R0 = 0.009           # Outer radius (m) = 9 mm
