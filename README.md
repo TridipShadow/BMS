@@ -228,6 +228,6 @@ The correlation between SOH degradation and cumulative thermal stress (with a li
 
 ![SOH vs Cumulative Thermal Stress](graph_B6/cumulative_stress%20vs%20SOH/cumulative_stress_vs_soh.png)
 
-Additionally, a comparison of the SOH vs. Cumulative Thermal Stress profiles for both Battery B5 and Battery B6 shows highly consistent degradation rates as a function of accumulated thermal stress:
+Additionally, a comparison of the SOH vs. Cumulative Thermal Stress profiles for both Battery B5, Battery B6 and Battery B7 shows highly consistent degradation rates as a function of accumulated thermal stress:
 
 ![State of Health (SOH) vs. Cumulative Stress (B5 & B6 Comparison)](soh_vs_cumulative_stress.png)
