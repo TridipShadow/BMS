@@ -45,23 +45,85 @@ An analytical thermal model is implemented to estimate the core ($r=0$) and surf
 - Internal Resistance ($R_{internal}$): $0.005$ $\Omega$ (5 m$\Omega$)
 - Ambient Temperature ($T_{amb}$): $25.0$ °C
 
-**Mathematical Formulation:**
+  
+## Mathematical Formulation
 
-1. **Heat Generation ($Q_{dot}$):**
-   The dissipated power is approximated by Joule heating using the discharge current:
-   $$ P_{diss} = I_{discharge}^2 \cdot R_{internal} $$
-   Volumetric heat generation is then calculated based on the cylindrical cell volume ($V_{cell} = \pi \cdot R_0^2 \cdot L$, where $L=0.065$ m):
-   $$ Q_{dot} = \frac{P_{diss}}{V_{cell}} \quad [\text{W/m}^3] $$
+### 1. Heat Generation ($Q_{\dot{}}$)
 
-2. **Eigenvalues ($\lambda_n$):**
-   The spatial thermal modes depend on eigenvalues $\lambda_n$, determined by solving a transcendental equation representing the convective boundary condition at the surface ($r=R_0$). This involves Bessel functions of the first kind ($J_0, J_1$) and the Biot number analogue ($h/k$):
-   $$ \lambda_n \cdot J_1(\lambda_n R_0) = \frac{h}{k} \cdot J_0(\lambda_n R_0) $$
-   A root-finding algorithm (Brent's method) is employed to find the first 10 roots ($\lambda_1$ to $\lambda_{10}$) representing the dominant spatial modes.
+The dissipated power is approximated using Joule heating:
 
-3. **Temperature Solution ($T(r, t)$):**
-   The temperature at radial position $r$ and time $t$ is calculated by superimposing the modal responses (Green's functions $G_n$) driven by the heat generation history $q(\tau)$:
-   $$ T(r, t) = T_{amb} + \int_0^t \sum_{n=1}^{10} G_n(r, t-\tau) \cdot q(\tau) \, d\tau $$
-   The script assumes a constant $Q_{dot}$ over the duration of the cycle time ($BCt$) and computes an exact time integral analytically to return the final temperature at the end of the cycle.
+$$
+P_{\mathrm{diss}} = I_{\mathrm{discharge}}^2 R_{\mathrm{internal}}
+$$
+
+The cylindrical cell volume is
+
+$$
+V_{\mathrm{cell}} = \pi R_0^2 L
+$$
+
+where
+
+$$
+L = 0.065\ \mathrm{m}
+$$
+
+The volumetric heat generation rate is
+
+$$
+\dot{Q} = \frac{P_{\mathrm{diss}}}{V_{\mathrm{cell}}}
+\qquad [\mathrm{W/m^3}]
+$$
+
+---
+
+### 2. Eigenvalues ($\lambda_n$)
+
+The spatial thermal modes are obtained from the convective boundary condition at the surface ($r = R_0$).
+
+The eigenvalues $\lambda_n$ satisfy
+
+$$
+\lambda_n J_1(\lambda_n R_0)
+=
+\frac{h}{k}
+J_0(\lambda_n R_0)
+$$
+
+where:
+
+- $J_0$ = Bessel function of the first kind, order 0
+- $J_1$ = Bessel function of the first kind, order 1
+- $h$ = convective heat-transfer coefficient
+- $k$ = thermal conductivity
+
+The first ten roots ($\lambda_1$ to $\lambda_{10}$) are computed using Brent's root-finding method.
+
+---
+
+### 3. Temperature Solution ($T(r,t)$)
+
+The temperature field is obtained by superposition of modal Green's-function responses:
+
+$$
+T(r,t)
+=
+T_{\mathrm{amb}}
++
+\int_0^t
+\sum_{n=1}^{10}
+G_n(r,t-\tau)\,
+q(\tau)\,
+d\tau
+$$
+
+where:
+
+- $T_{\mathrm{amb}}$ = ambient temperature
+- $G_n$ = Green's function associated with mode $n$
+- $q(\tau)$ = volumetric heat-generation history
+
+For a constant heat-generation rate $\dot{Q}$ over the cycle duration ($BCt$), the time integral is evaluated analytically to obtain the final temperature at the end of the cycle.
 
 **Outputs:**
 - `task2_greens_temperature_per_cycle.csv`: Comprehensive per-cycle data including calculated $T_{centre}$, $T_{surface}$, $\Delta T$, $Q_{dot}$, alongside SOH/RUL values.
