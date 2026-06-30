@@ -359,14 +359,3 @@ three battery datasets (B5, B6, B7). This level of agreement confirms that:
 
 ---
 
-## Appendix — File Structure
-
-```
-.
-├── compute_ftcs.py    # FTCS solver core (grid, stability, BCs, time-march loop)
-├── main.py             # entry point: loads CSV, runs solver, saves results + T(r) plots
-├── plot.py              # generates validation plots (core/surface/ΔT) per battery
-├── HANDOVER_task3_thermal_model.csv   # Task 2 input (Q̇, t_cycle, T_core, T_surface)
-├── ftcs_results.csv    # FTCS output: cycle-level T_core, T_surface, error vs Green's
-└── assets/              # plots referenced in this README
-```
