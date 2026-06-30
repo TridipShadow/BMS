@@ -176,30 +176,33 @@ physically correct boundary condition for finite convective cooling.
 
 ## 6. Von Neumann Stability Analysis
 
-FTCS is an **explicit** scheme — it is only *conditionally* stable. Stability is examined by
-substituting a Fourier error mode $T_i^n = \xi^n e^{jk i \Delta r}$ into the homogeneous
-update equation (the diffusion term only) and requiring the **amplification factor**
-$|\xi| \le 1$ for all wavenumbers $k$:
+FTCS is an **explicit** scheme — it is only *conditionally* stable. The stability
+condition (Von Neumann stability analysis) requires:
 
 $$
-\xi = 1 - 4F\sin^2\left(\frac{k\Delta r}{2}\right), \qquad F = \frac{\alpha \Delta t}{(\Delta r)^2}
-$$
-
-The worst case occurs at $\sin^2(\cdot) = 1$, giving $\xi_{min} = 1 - 4F$. Requiring
-$|\xi_{min}| \le 1$:
-
-$$
--1 \le 1-4F \le 1 \quad\Longrightarrow\quad \boxed{F \le \frac{1}{2}}
-$$
-
-i.e.
-
-$$
-\boxed{
 \Delta t \le \frac{(\Delta r)^2}{2\alpha}
-}
 $$
 
+### 6.1 Numerical Evaluation
+
+$$
+\Delta t_{max} = \frac{(5.0\times10^{-4})^2}{2 \times 1.923\times10^{-7}}
+= \frac{2.5\times10^{-7}}{3.846\times10^{-7}} \approx 0.650\ \text{s}
+$$
+
+**Chosen time step:** $\Delta t = 0.5\ \text{s}$
+
+$$
+F = \frac{\alpha \Delta t}{(\Delta r)^2} = \frac{1.923\times10^{-7}\times 0.5}{(5\times10^{-4})^2}
+\approx 0.385 \;\; (< 0.5 \;\Rightarrow\; \text{STABLE})
+$$
+
+| Quantity | Value |
+|---|---|
+| $\Delta t_{max}$ (stability bound) | $0.650$ s |
+| $\Delta t$ (used) | $0.500$ s |
+| $F$ | $0.385$ |
+| Status | **Stable** |
 ### 6.1 Numerical Evaluation
 
 $$
