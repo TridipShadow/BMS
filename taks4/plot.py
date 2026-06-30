@@ -84,7 +84,7 @@ for bat in batteries:
     print(f"  ΔT      MSE={mse_dt:.8f}°C²  RMSE={rmse_dt:.6f}°C  MAE={mae_dt:.6f}°C")
 
     # ------------------------------------------------------------------
-    # PLOT 1 — Core temperature
+    # PLOT 1 — Core temperature (line plot)
     # ------------------------------------------------------------------
     fig, ax = plt.subplots(figsize=FIGSIZE)
 
@@ -101,7 +101,29 @@ for bat in batteries:
     ax.grid(True, alpha=GRID_ALPHA)
     metrics_box(ax, mse_c, rmse_c, mae_c)
 
-    save(fig, f"plot/{bat}_core_temp.png")
+    save(fig, f"plot_unstable/{bat}_core_temp.png")
+
+#     # ------------------------------------------------------------------
+#     # PLOT 1b — Core temperature error histogram
+#     # ------------------------------------------------------------------
+#     fig, ax = plt.subplots(figsize=FIGSIZE)
+
+#     core_error = sub['T_core_FTCS'].values - sub['T_core_Greens'].values
+#     ax.hist(core_error, bins='auto', color=color, alpha=0.7,
+#             edgecolor='black', linewidth=0.6, label='Error distribution')
+#     mean_err = core_error.mean()
+#     ax.axvline(mean_err, color='steelblue', ls='--', lw=1.5,
+#                label=f'Mean = {mean_err:+.4f}°C')
+
+#     ax.set_xlabel('Error  FTCS − Green\'s (°C)', fontsize=12)
+#     ax.set_ylabel('Frequency', fontsize=12)
+#     ax.set_title(f'{bat} — Core Temperature Error Distribution',
+#                  fontsize=13, fontweight='bold')
+#     ax.legend(fontsize=9, loc='upper right')
+#     ax.grid(True, alpha=GRID_ALPHA)
+#     metrics_box(ax, mse_c, rmse_c, mae_c)
+
+#     save(fig, f"plot_unstable/{bat}_core_temp_histogram.png")
 
     # ------------------------------------------------------------------
     # PLOT 2 — Surface temperature
@@ -121,7 +143,7 @@ for bat in batteries:
     ax.grid(True, alpha=GRID_ALPHA)
     metrics_box(ax, mse_s, rmse_s, mae_s)
 
-    save(fig, f"plot/{bat}_surface_temp.png")
+    save(fig, f"plot_unstable/{bat}_surface_temp.png")
 
     # ------------------------------------------------------------------
     # PLOT 3 — Error (FTCS − Green's)
@@ -157,7 +179,7 @@ for bat in batteries:
             bbox=dict(boxstyle='round', facecolor='lightyellow',
                       edgecolor='gray', alpha=0.9))
 
-    save(fig, f"plot/{bat}_error.png")
+    save(fig, f"plot_unstable/{bat}_error.png")
 
     # ------------------------------------------------------------------
     # PLOT 4 — ΔT (core − surface)
@@ -185,7 +207,7 @@ for bat in batteries:
     ax.grid(True, alpha=GRID_ALPHA)
     metrics_box(ax, mse_dt, rmse_dt, mae_dt)
 
-    save(fig, f"plot/{bat}_delta_T.png")
+    save(fig, f"plot_unstable/{bat}_delta_T.png")
 
 # =============================================================================
 # SUMMARY TABLE
@@ -212,9 +234,9 @@ for bat in batteries:
           f"{mse_s:>14.8f} {rmse_s:>12.6f} {mae_s:>12.6f} "
           f"{mse_dt:>14.8f} {rmse_dt:>12.6f} {mae_dt:>12.6f}")
 
-print(f"\nOutput files per battery (12 total):")
+print(f"\nOutput files per battery ({len(batteries) * 5} total):")
 for bat in batteries:
-    for suffix in ['core_temp', 'surface_temp', 'error', 'delta_T']:
-        print(f"  plot/{bat}_{suffix}.png")
+    for suffix in ['core_temp', 'core_temp_histogram', 'surface_temp', 'error', 'delta_T']:
+        print(f"  plot_unstable/{bat}_{suffix}.png")
 
 print("\nplot.py — Done ✓")

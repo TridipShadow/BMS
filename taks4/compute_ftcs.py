@@ -16,7 +16,7 @@ r  = np.linspace(0, R0, N + 1)
 
 dt_max = (dr ** 2) / (2 * alpha)
 dt     = 0.5
-assert dt <= dt_max, f"UNSTABLE: dt={dt} > dt_max={dt_max:.4f}"
+# assert dt <= dt_max, f"UNSTABLE: dt={dt} > dt_max={dt_max:.4f}"
 
 
 F       = alpha * dt / dr ** 2      # 2nd order differential equation coefficient
