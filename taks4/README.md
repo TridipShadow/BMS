@@ -126,8 +126,7 @@ T_i^{n+1} = T_i^n + \underbrace{\frac{\alpha \Delta t}{(\Delta r)^2}}_{F}\left(T
 }
 $$
 
-where $F$ (Fourier number coefficient), $G$ (cylindrical-term coefficient), and $S$
-(heat-source term) are precomputed constants — valid for $i = 1, 2, \dots, N-1$.
+
 
 ---
 
@@ -218,7 +217,7 @@ $$
 |---|---|
 | $\Delta t_{max}$ (stability bound) | $0.650$ s |
 | $\Delta t$ (used) | $0.500$ s |
-| Fourier number $F$ | $0.385$ |
+| $F$ | $0.385$ |
 | Status | **Stable** ✓ |
 
 ---
