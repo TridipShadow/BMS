@@ -4,7 +4,7 @@
 **Battery:** 18650 cylindrical Li-ion cell
 **Method:** Forward-Time Central-Space (FTCS) finite difference scheme
 **Validated against:** Green's function analytical solution (Task 2)
-**Batteries analyzed:** B5, B6, B7 (NASA-style cycling dataset)
+**Batteries analyzed:** B5, B6, B7
 
 ---
 
