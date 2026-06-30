@@ -122,7 +122,7 @@ Solving explicitly for $T_i^{n+1}$:
 
 $$
 \boxed{
-T_i^{n+1} = T_i^n + \underbrace{\frac{\alpha \Delta t}{(\Delta r)^2}}_{F}\left(T_{i+1}^n - 2T_i^n + T_{i-1}^n\right) + \underbrace{\frac{\alpha \Delta t}{2\Delta r}}_{G}\cdot\frac{T_{i+1}^n - T_{i-1}^n}{r_i} + \underbrace{\frac{\dot{Q}\,\Delta t}{\rho c_p}}_{S}
+T_i^{n+1} = T_i^n + \underbrace{\frac{\alpha \Delta t}{(\Delta r)^2}}_{F}\left(T_{i+1}^n - 2T_i^n + T_{i-1}^n\right) + \underbrace{\frac{\alpha \Delta t}{2\Delta r}}_{G}\cdot\frac{T_{i+1}^n - T_{i-1}^n}{r_i} + \underbrace{\frac{\Delta t}{\rho c_p}}_{S}.\dot Q
 }
 $$
 
@@ -167,10 +167,7 @@ T_N = \frac{T_{N-1} + \mathrm{BC_surf}\cdot T_{amb}}{1 + \mathrm{BC_surf}}, \qqu
 }
 $$
 
-This is a **Robin (mixed) boundary condition**. Note: as $h \to \infty$ (perfect cooling),
-$T_N \to T_{amb}$ — recovering the Dirichlet limit. As $h \to 0$ (insulated), $T_N \to T_{N-1}$
-— recovering the Neumann (zero-flux) limit. Newton's cooling is therefore the general,
-physically correct boundary condition for finite convective cooling.
+
 
 ---
 
