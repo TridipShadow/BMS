@@ -23,16 +23,6 @@ For a radially-symmetric cylinder with internal heat generation, the 1-D transie
 conduction equation is:
 
 $$
-\rho c_p \frac{\partial T(r,t)}{\partial t} =
-k\frac{\partial^2 T(r,t)}{\partial r^2} +
-\frac{k}{r}\frac{\partial T(r,t)}{\partial r} +
-\dot{Q}
-$$
-
-Dividing through by $\rho c_p$ and defining the **thermal diffusivity**
-$\alpha = \dfrac{k}{\rho c_p}$:
-
-$$
 \frac{\partial T}{\partial t} = \alpha\left(\frac{\partial^2 T}{\partial r^2} +
 \frac{1}{r}\frac{\partial T}{\partial r}\right) + \frac{\dot{Q}}{\rho c_p}
 $$
@@ -125,18 +115,14 @@ $$
 Substituting all three discretized operators into the governing PDE:
 
 $$
-\frac{T_i^{n+1} - T_i^n}{\Delta t} = \alpha\left[\frac{T_{i+1}^n - 2T_i^n + T_{i-1}^n}{(\Delta r)^2}
-+ \frac{1}{r_i}\cdot\frac{T_{i+1}^n - T_{i-1}^n}{2\Delta r}\right] + \frac{\dot{Q}}{\rho c_p}
+\frac{T_i^{n+1} - T_i^n}{\Delta t} = \alpha\left[\frac{T_{i+1}^n - 2T_i^n + T_{i-1}^n}{(\Delta r)^2} + \frac{1}{r_i}\cdot\frac{T_{i+1}^n - T_{i-1}^n}{2\Delta r}\right] + \frac{\dot{Q}}{\rho c_p}
 $$
 
 Solving explicitly for $T_i^{n+1}$:
 
 $$
 \boxed{
-T_i^{n+1} = T_i^n
-+ \underbrace{\frac{\alpha \Delta t}{(\Delta r)^2}}_{F}\left(T_{i+1}^n - 2T_i^n + T_{i-1}^n\right)
-+ \underbrace{\frac{\alpha \Delta t}{2\Delta r}}_{G}\cdot\frac{T_{i+1}^n - T_{i-1}^n}{r_i}
-+ \underbrace{\frac{\dot{Q}\,\Delta t}{\rho c_p}}_{S}
+T_i^{n+1} = T_i^n + \underbrace{\frac{\alpha \Delta t}{(\Delta r)^2}}_{F}\left(T_{i+1}^n - 2T_i^n + T_{i-1}^n\right) + \underbrace{\frac{\alpha \Delta t}{2\Delta r}}_{G}\cdot\frac{T_{i+1}^n - T_{i-1}^n}{r_i} + \underbrace{\frac{\dot{Q}\,\Delta t}{\rho c_p}}_{S}
 }
 $$
 
@@ -176,8 +162,8 @@ $$
 
 $$
 \boxed{
-T_N = \frac{T_{N-1} + \mathrm{Bi}\cdot T_{amb}}{1 + \mathrm{Bi}}, \qquad
-\mathrm{Bi} = \frac{h\Delta r}{k}
+T_N = \frac{T_{N-1} + \mathrm{BC_surf}\cdot T_{amb}}{1 + \mathrm{BC_surf}}, \qquad
+\mathrm{BC_surf} = \frac{h\Delta r}{k}
 }
 $$
 
@@ -302,33 +288,33 @@ starts flat at $T_{amb}$ and develops a smooth core-to-surface gradient as heat 
 
 **Battery B5** (cycle 111):
 
-![B5 T(r) profile](assets/profile_B5.png)
+![B5 T(r) profile](profile_B5.png)
 
 **Battery B6** (cycle 106):
 
-![B6 T(r) profile](assets/profile_B6.png)
+![B6 T(r) profile](profile_B6.png)
 
 **Battery B7** (cycle 126):
 
-![B7 T(r) profile](assets/profile_B7.png)
+![B7 T(r) profile](profile_B7.png)
 
 ### 8.2 Core Temperature — FTCS vs Green's Function
 
-![B5 core temp](assets/B5_core_temp.png)
-![B6 core temp](assets/B6_core_temp.png)
-![B7 core temp](assets/B7_core_temp.png)
+![B5 core temp](plot_h=9.75/B5_core_temp.png)
+![B6 core temp](plot_h=9.75/B6_core_temp.png)
+![B7 core temp](plot_h=9.75/B7_core_temp.png)
 
 ### 8.3 Surface Temperature — FTCS vs Green's Function
 
-![B5 surface temp](assets/B5_surface_temp.png)
-![B6 surface temp](assets/B6_surface_temp.png)
-![B7 surface temp](assets/B7_surface_temp.png)
+![B5 surface temp](plot_h=9.75/B5_surface_temp.png)
+![B6 surface temp](plot_h=9.75/B6_surface_temp.png)
+![B7 surface temp](plot_h=9.75/B7_surface_temp.png)
 
 ### 8.4 Temperature Gradient, $\Delta T = T_{core} - T_{surface}$
 
-![B5 delta T](assets/B5_delta_T.png)
-![B6 delta T](assets/B6_delta_T.png)
-![B7 delta T](assets/B7_delta_T.png)
+![B5 delta T](plot_h=9.75/B5_delta_T.png)
+![B6 delta T](plot_h=9.75/B6_delta_T.png)
+![B7 delta T](plot_h=9.75/B7_delta_T.png)
 
 ---
 
